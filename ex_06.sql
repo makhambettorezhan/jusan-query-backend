@@ -6,4 +6,6 @@ FROM   employee e
        JOIN customer c
          ON c.supportrepid = e.employeeid
        JOIN invoice i
-         ON i.customerid = c.customerid;
+         ON i.customerid = c.customerid
+		 where e.title like '%sales%'
+		 order by i.InvoiceId;

@@ -49,15 +49,13 @@ FROM   employee e
 /*7. Напишите запрос, который показывает общую сумму счета, имя клиента, страну и имя агента по продаже для всех счетов и клиентов. На выходе в первой 
 колонке должна быть общая стоимость счет-фактуры, во второй имя и фамилия покупателя, в третьей страна выставления счета, в четвертой имя и фамилия продавца.*/
 SELECT i.total,
-       c.firstname,
-       c.lastname,
+       c.firstname || ' ' || c.lastname as Customer,
        c.country,
-       e.firstname,
-       e.lastname
+       e.firstname || ' ' || e.lastname as Employee
 FROM   customer c
-       JOIN employee e
+       LEFT JOIN employee e
          ON e.employeeid = c.supportrepid
-       JOIN invoice i
+       LEFT JOIN invoice i
          ON i.customerid = c.customerid;
 
 /*8. NOT SURE YET. Сколько счетов было выставлено в 2009 и 2011 годах? Каковы соответствующие объемы продаж за каждый год? На выходе в первой колонке должен быть 
@@ -74,13 +72,14 @@ SELECT Count(*)
 FROM   invoiceline il
 WHERE  il.invoiceid = 37;
 
-/*10. NOT SURE. Просматривая таблицу InvoiceLine, напишите запрос, который подсчитывает количество позиций для каждой счета-фактуры. На выходе в первой колонке должен быть
+/*10. Просматривая таблицу InvoiceLine, напишите запрос, который подсчитывает количество позиций для каждой счета-фактуры. На выходе в первой колонке должен быть
  идентификатор счет-фактуры, во второй количество позиций. HINT: GROUP BY.*/
 SELECT Count(il.invoiceid),
        il.invoicelineid
 FROM   invoiceline il
-       JOIN invoice i
-         ON i.invoiceid = il.invoiceid;
+       LEFT JOIN invoice i
+       ON i.invoiceid = il.invoiceid
+GROUP BY i.invoiceid;
 
 /*11. Напишите запрос, который включает название трека для каждой позиции из таблицы InvoiceLine. На выходе в первой колонке должен быть идентификатор 
 счет-фактуры, во второй название трека.*/
