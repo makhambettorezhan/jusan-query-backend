@@ -4,4 +4,4 @@ SELECT i.billingcountry,
        Sum(i.total) AS Total
 FROM   invoice i
 GROUP  BY i.billingcountry
-ORDER  BY total;
+ORDER  BY total desc;

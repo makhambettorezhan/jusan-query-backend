@@ -4,12 +4,13 @@
 */
 SELECT t.name,
        a.title,
-       g.name,
-       m.name
+       m.name,
+       g.name
 FROM   track t
        JOIN album a
-         ON t.trackid = a.albumid
-       JOIN genre g
-         ON t.genreid = g.genreid
+         ON t.albumid = a.albumid
        JOIN mediatype m
-         ON t.mediatypeid = m.mediatypeid;
+         ON t.mediatypeid = m.mediatypeid
+       JOIN genre g
+         ON t.genreid = g.genreid;
+       
