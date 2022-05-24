@@ -2,10 +2,11 @@
 колонке должна быть общая стоимость счет-фактуры, во второй имя и фамилия покупателя, в третьей страна выставления счета, в четвертой имя и фамилия продавца.*/
 SELECT i.total,
        c.firstname || ' ' || c.lastname as Customer,
-       c.country,
+       i.billingcountry,
        e.firstname || ' ' || e.lastname as Employee
-FROM   customer c
+FROM   Invoice i
+       LEFT JOIN  customer c
+         ON i.customerid = c.customerid
        LEFT JOIN employee e
          ON e.employeeid = c.supportrepid
-       LEFT JOIN invoice i
-         ON i.customerid = c.customerid;
+       WHERE e.title = 'Sales Support Agent';

@@ -4,9 +4,9 @@ SELECT il.invoiceid,
        t.name,
        art.name
 FROM   invoiceline il
-       JOIN track t
+       LEFT JOIN track t
          ON t.trackid = il.invoiceid
-       JOIN album a
+       LEFT JOIN album a
          ON a.albumid = t.albumid
-       JOIN artist art
+       LEFT JOIN artist art
          ON art.artistid = a.artistid;

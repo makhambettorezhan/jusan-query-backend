@@ -1,9 +1,8 @@
 /*3. A query that returns customers from Brazil with their invoice ID */
-SELECT c.firstname,
-       c.lastname,
+SELECT c.firstname || ' ' || c.lastname as Customer,
        i.invoiceid,
        i.invoicedate,
-       c.country
+       c.country as Country
 FROM   customer c
        JOIN invoice i
          ON c.customerid = i.customerid
