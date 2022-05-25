@@ -9,4 +9,4 @@ FROM   invoice i
               ON c.supportrepid = e.employeeid
        JOIN customer c
          ON i.customerid = c.customerId
-GROUP  BY c.supportrepid;  
+GROUP  BY c.customerid;  

@@ -7,4 +7,5 @@ SELECT Count(*) AS Total,
 FROM   employee e
        JOIN customer c
               ON c.supportrepid = e.employeeid
+WHERE e.title = 'Sales Support Agent'
 GROUP  BY e.EmployeeId;
